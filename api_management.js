@@ -13,17 +13,27 @@ function fetchAllProducts() {
 fetchAllProducts();
 
 
+// Function to add a new product to the server after validating the data
+function addProduct(product) {
+    // Validate product data before sending it to the server
+    if (product.name && typeof product.price === "number" && product.price > 0) {
+        fetch('http://localhost:3000/products', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(product)
+        })
+            .then(response => response.json())
+            .then(data => console.log("Product added:", data))
+            .catch(error => console.error("Error adding product:", error));
+    } else {
+        // Display an error if the validation fails
+        console.error("Invalid product data. Please check the name and price.");
+    }
+}
 
-const nuevoProducto = { id: 4, nombre: "Monitor", precio: 200 };
-
-fetch('http://localhost:3000/productos', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(nuevoProducto)
-})
-    .then(responde => responde.json())
-    .then(data => console.log("Producto agregado:", data))
-    .catch(error => console.error("Error al agregar producto:", error));
+// Example usage
+const newProduct = { id: 4, name: "Monitor", price: 200 };
+addProduct(newProduct);
 
 
 const productoActualizado = { nombre: "Laptop", precio: 1400 };
