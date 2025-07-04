@@ -36,16 +36,26 @@ const newProduct = { id: 4, name: "Monitor", price: 200 };
 addProduct(newProduct);
 
 
-const productoActualizado = { nombre: "Laptop", precio: 1400 };
+// Function to update an existing product using PUT request
+function updateProduct(id, updatedProduct) {
+    // Validate updated product data
+    if (updatedProduct.name && typeof updatedProduct.price === "number" && updatedProduct.price > 0) {
+        fetch(`http://localhost:3000/products/${id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(updatedProduct)
+        })
+            .then(response => response.json())
+            .then(data => console.log("Product updated:", data))
+            .catch(error => console.error("Error updating product:", error));
+    } else {
+        console.error("Invalid updated product data. Please check the name and price.");
+    }
+}
 
-fetch('http://localhost:3000/productos/1', {
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(productoActualizado)
-})
-    .then(responde => responde.json())
-    .then(data => console.log("Producto actualizado:", data))
-    .catch(error => console.error("Error al actualizar producto:", error));
+// Example usage
+const updatedProduct = { name: "Laptop", price: 1400 };
+updateProduct(1, updatedProduct);
 
 
 fetch('http://localhost:3000/productos/3', { method: 'DELETE' })
