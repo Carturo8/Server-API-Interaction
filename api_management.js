@@ -58,9 +58,17 @@ const updatedProduct = { name: "Laptop", price: 1400 };
 updateProduct(1, updatedProduct);
 
 
-fetch('http://localhost:3000/productos/3', { method: 'DELETE' })
-    .then(() => console.log("Producto eliminado"))
-    .catch(error => console.error("Error al eliminar producto:", error));
+// Function to delete a product by ID using DELETE request
+function deleteProduct(id) {
+    fetch(`http://localhost:3000/products/${id}`, {
+        method: 'DELETE'
+    })
+        .then(() => console.log(`Product with ID ${id} deleted`))
+        .catch(error => console.error("Error deleting product:", error));
+}
+
+// Example usage
+deleteProduct(3);
 
 
 function validarProducto(producto) {
