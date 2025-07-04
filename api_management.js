@@ -1,7 +1,17 @@
-fetch('http://localhost:3000/productos')
-    .then(responde => responde.json())
-    .then(data => console.log("Productos disponibles:", data))
-    .catch(error => console.error("Error al obtener productos:", error));
+// Fetch all products from the JSON Server and display them in the console
+function fetchAllProducts() {
+    fetch('http://localhost:3000/products')
+        .then(response => response.json())
+        .then(data => {
+            console.log("Available products:", data);
+        })
+        .catch(error => {
+            console.error("Error fetching products:", error);
+        });
+}
+
+fetchAllProducts();
+
 
 
 const nuevoProducto = { id: 4, nombre: "Monitor", precio: 200 };
