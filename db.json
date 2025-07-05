@@ -12,8 +12,43 @@
     },
     {
       "id": 3,
+      "name": "Monitor",
+      "price": 200
+    },
+    {
+      "id": 4,
       "name": "Keyboard",
-      "price": 50
+      "price": 45
+    },
+    {
+      "id": 5,
+      "name": "Smartphone",
+      "price": 800
+    },
+    {
+      "id": 6,
+      "name": "Webcam",
+      "price": 90
+    },
+    {
+      "id": 7,
+      "name": "Headphones",
+      "price": 120
+    },
+    {
+      "id": 8,
+      "name": "External Hard Drive",
+      "price": 150
+    },
+    {
+      "id": 9,
+      "name": "Graphics Tablet",
+      "price": 350
+    },
+    {
+      "id": 10,
+      "name": "Desk Lamp",
+      "price": 30
     }
   ]
 }
