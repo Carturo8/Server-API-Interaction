@@ -1,18 +1,18 @@
-# === IDE configuration files ===
+# IDE configuration files
 .idea/
 .vscode/
 
-# === Node.js dependencies and logs ===
+# Node.js dependencies and logs
 node_modules/
 npm-debug.log
 
-# === Environment variables ===
+# Environment variables
 .env
 
-# === System-specific files ===
+# System-specific files
 .DS_Store
 Thumbs.db
 
-# === Temporary or generated files ===
+# Temporary or generated files
 *.log
 *.tmp
