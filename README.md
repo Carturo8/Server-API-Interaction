@@ -53,6 +53,10 @@ server-api-interaction/
 └── README.md
 ```
 
+---
+
+## 📝 File Descriptions
+
 - `index.html`: Main HTML structure and UI layout of the app.
 - `db.json`: Mock database used by JSON Server to simulate a REST API.
 - `.gitignore`: Specifies files and folders to exclude from version control.
