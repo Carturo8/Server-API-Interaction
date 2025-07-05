@@ -2,7 +2,7 @@
 
 🔗 **[Try it here!](https://carturo8.github.io/Server-API-Interaction/)**
 
-A simple web application to manage products: add, update, delete, and search products using a modern interface with stylish alerts powered by SweetAlert2.
+This project is a lightweight product management web application that lets users add, view, edit, delete, and search products through a clean and responsive UI. Built with vanilla JavaScript, HTML, and CSS, it interacts with a simulated REST API using `json-server`, and provides real-time feedback using SweetAlert2.
 
 ---
 
