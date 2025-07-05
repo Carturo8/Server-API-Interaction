@@ -1,54 +1,54 @@
 {
   "products": [
     {
-      "id": 1,
       "name": "Laptop",
-      "price": 1500
+      "price": 1500,
+      "id": "1"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Mouse",
       "price": 25
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Monitor",
       "price": 200
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "Keyboard",
       "price": 45
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "Smartphone",
       "price": 800
     },
     {
-      "id": 6,
+      "id": "6",
       "name": "Webcam",
       "price": 90
     },
     {
-      "id": 7,
+      "id": "7",
       "name": "Headphones",
       "price": 120
     },
     {
-      "id": 8,
+      "id": "8",
       "name": "External Hard Drive",
       "price": 150
     },
     {
-      "id": 9,
+      "id": "9",
       "name": "Graphics Tablet",
       "price": 350
     },
     {
-      "id": 10,
       "name": "Desk Lamp",
-      "price": 30
+      "price": 30,
+      "id": "10"
     }
   ]
 }
