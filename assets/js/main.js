@@ -67,12 +67,12 @@ function renderProductItem(product) {
 
     const editBtn = document.createElement("button");
     editBtn.textContent = "Edit";
-    editBtn.classList.add("edit-btn"); // 👇 add class for styling
+    editBtn.classList.add("edit-btn"); // Add class for styling
     editBtn.addEventListener("click", () => fillFormForEdit(product));
 
     const deleteBtn = document.createElement("button");
     deleteBtn.textContent = "Delete";
-    deleteBtn.classList.add("delete-btn"); // 👇 add class for styling
+    deleteBtn.classList.add("delete-btn"); // Add class for styling
     deleteBtn.addEventListener("click", () => deleteProduct(product.id));
 
     actionsCell.appendChild(editBtn);
