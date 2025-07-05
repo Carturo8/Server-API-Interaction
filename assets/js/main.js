@@ -19,59 +19,15 @@ window.addEventListener("DOMContentLoaded", () => {
     switchToAddMode();
 });
 
-// Event listener for Add Product
-addBtn.addEventListener("click", (e) => {
+// Handle form submission based on mode
+form.addEventListener("submit", (e) => {
     e.preventDefault();
-    const name = inputName.value.trim();
-    const price = parseFloat(inputPrice.value);
-    const product = { name, price };
-
-    if (!validateProduct(product)) return;
-
-    fetch(API_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(product),
-    })
-        .then((res) => res.json())
-        .then((data) => {
-            showAlert("Product added successfully", "success");
-            renderProductItem(data);
-            form.reset();
-            switchToAddMode();
-        })
-        .catch((err) => {
-            showAlert("Failed to add product", "error");
-            console.error("Add error:", err);
-        });
-});
-
-// Event listener for Update Product
-updateBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    const id = inputId.value;
-    const name = inputName.value.trim();
-    const price = parseFloat(inputPrice.value);
-    const product = { name, price };
-
-    if (!validateProduct(product)) return;
-
-    fetch(`${API_URL}/${id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(product),
-    })
-        .then((res) => res.json())
-        .then(() => {
-            showAlert("Product updated successfully", "success");
-            loadProducts();
-            form.reset();
-            switchToAddMode();
-        })
-        .catch((err) => {
-            showAlert("Failed to update product", "error");
-            console.error("Update error:", err);
-        });
+    const isEditing = inputId.value !== "";
+    if (isEditing) {
+        updateProduct();
+    } else {
+        addProduct();
+    }
 });
 
 // Cancel editing and reset form
@@ -111,10 +67,12 @@ function renderProductItem(product) {
 
     const editBtn = document.createElement("button");
     editBtn.textContent = "Edit";
+    editBtn.classList.add("edit-btn"); // 👇 add class for styling
     editBtn.addEventListener("click", () => fillFormForEdit(product));
 
     const deleteBtn = document.createElement("button");
     deleteBtn.textContent = "Delete";
+    deleteBtn.classList.add("delete-btn"); // 👇 add class for styling
     deleteBtn.addEventListener("click", () => deleteProduct(product.id));
 
     actionsCell.appendChild(editBtn);
@@ -128,12 +86,65 @@ function renderProductItem(product) {
     productList.appendChild(row);
 }
 
-// Fill form with product data to edit
+// Fill the form with product data to edit
 function fillFormForEdit(product) {
     inputId.value = product.id;
     inputName.value = product.name;
     inputPrice.value = product.price;
     switchToEditMode();
+}
+
+// Add a new product
+function addProduct() {
+    const name = inputName.value.trim();
+    const price = parseFloat(inputPrice.value);
+    const product = { name, price };
+
+    if (!validateProduct(product)) return;
+
+    fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(product),
+    })
+        .then((res) => res.json())
+        .then((data) => {
+            showAlert("Product added successfully", "success");
+            renderProductItem(data);
+            form.reset();
+            switchToAddMode();
+        })
+        .catch((err) => {
+            showAlert("Failed to add product", "error");
+            console.error("Add error:", err);
+        });
+}
+
+// Update existing product
+function updateProduct() {
+    const id = inputId.value.trim();
+    const name = inputName.value.trim();
+    const price = parseFloat(inputPrice.value);
+    const product = { name, price };
+
+    if (!validateProduct(product)) return;
+
+    fetch(`${API_URL}/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(product),
+    })
+        .then((res) => res.json())
+        .then(() => {
+            showAlert("Product updated successfully", "success");
+            loadProducts();
+            form.reset();
+            switchToAddMode();
+        })
+        .catch((err) => {
+            showAlert("Failed to update product", "error");
+            console.error("Update error:", err);
+        });
 }
 
 // Delete a product after confirmation
@@ -166,7 +177,12 @@ function deleteProduct(id) {
 
 // Validate product before sending to server
 function validateProduct(product) {
-    if (!product.name || typeof product.price !== "number" || product.price <= 0) {
+    if (
+        !product.name ||
+        typeof product.name !== "string" ||
+        !Number.isFinite(product.price) ||
+        product.price <= 0
+    ) {
         showAlert("Invalid product data", "error");
         return false;
     }
